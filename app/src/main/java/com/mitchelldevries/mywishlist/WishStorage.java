@@ -38,10 +38,17 @@ public class WishStorage {
         realm.commitTransaction();
     }
 
-    public void updateCurrent(Wish wish, Double current) {
+    public void deposit(Wish wish, Double current) {
         realm.beginTransaction();
         double old = findOne(wish.getId()).getCurrent();
         wish.setCurrent(old += current);
+        realm.commitTransaction();
+    }
+
+    public void withdraw(Wish wish, Double current) {
+        realm.beginTransaction();
+        double old = findOne(wish.getId()).getCurrent();
+        wish.setCurrent(old -= current);
         realm.commitTransaction();
     }
 

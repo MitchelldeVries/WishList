@@ -4,13 +4,14 @@ import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -63,6 +64,8 @@ public class WishAdapter extends RecyclerView.Adapter<WishAdapter.WishViewHolder
         TextView wishTarget;
         @BindView(R.id.list_item_current)
         TextView wishCurrent;
+        @BindView(R.id.progress)
+        ProgressBar progressBar;
 
         private Wish wish;
 
@@ -74,8 +77,8 @@ public class WishAdapter extends RecyclerView.Adapter<WishAdapter.WishViewHolder
         public void bindWish(Wish wish, int position) {
             this.wish = wish;
 
-            int color = position % 5;
             int[] colors = context.getResources().getIntArray(R.array.colors);
+            int color = position % colors.length;
             int backgroundColor = colors[color];
             layout.setBackgroundColor(backgroundColor);
 
@@ -83,17 +86,22 @@ public class WishAdapter extends RecyclerView.Adapter<WishAdapter.WishViewHolder
             wishImage.setImageResource(wish.getImage());
             wishTarget.setText(String.format("€%s", String.valueOf(wish.getTarget())));
             wishCurrent.setText(String.format("€%s", String.valueOf(wish.getCurrent())));
+            double progress = (wish.getCurrent() / wish.getTarget()) * 100;
+            Log.i("TAG", "bindWish: " + progress);
+            progressBar.setProgress((int) progress);
         }
 
         @OnClick(R.id.list_item_deposit)
         void deposit() {
-            DialogFragment newFragment = TransferDialog.newInstance(wish.getId());
+            DialogFragment newFragment = DepositDialog.newInstance(wish.getId());
             newFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), "deposit");
         }
 
         @OnClick(R.id.list_item_withdraw)
         void withdraw() {
-            Toast.makeText(context, "Withdraw", Toast.LENGTH_SHORT).show();
+            DialogFragment newFragment = WithdrawDialog.newInstance(wish.getId());
+            newFragment.setTargetFragment(WishListFragment.newInstance(), 1);
+            newFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), "withdraw");
         }
     }
 }

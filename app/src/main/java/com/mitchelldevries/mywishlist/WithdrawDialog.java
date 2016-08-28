@@ -1,8 +1,8 @@
 package com.mitchelldevries.mywishlist;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -16,14 +16,14 @@ import butterknife.ButterKnife;
 /**
  * @author Mitchell de Vries.
  */
-public class TransferDialog extends DialogFragment {
+public class WithdrawDialog extends DialogFragment {
 
     private EditText editText;
 
-    public static TransferDialog newInstance(int id) {
+    public static WithdrawDialog newInstance(int id) {
         Bundle args = new Bundle();
         args.putInt("id", id);
-        TransferDialog fragment = new TransferDialog();
+        WithdrawDialog fragment = new WithdrawDialog();
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,13 +42,13 @@ public class TransferDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         WishStorage storage = WishStorage.getInstance(getActivity());
                         Wish wish = storage.findOne(getArguments().getInt("id", 0));
-                        storage.updateCurrent(wish, Double.parseDouble(String.valueOf(editText.getText())));
-                        startActivity(new Intent(getActivity(), WishListActivity.class));
+                        storage.withdraw(wish, Double.parseDouble(String.valueOf(editText.getText())));
+                        getTargetFragment().onActivityResult(WishListFragment.REQUEST_WISH, Activity.RESULT_OK, null);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        TransferDialog.this.getDialog().cancel();
+                        WithdrawDialog.this.getDialog().cancel();
                     }
                 });
         return builder.create();

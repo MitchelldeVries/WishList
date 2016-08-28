@@ -14,7 +14,6 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.Realm;
 
 /**
  * @author Mitchell de Vries.
@@ -50,7 +49,7 @@ public class AddWishFragment extends Fragment {
         wish.setId(storage.incrementId());
         wish.setTitle(String.valueOf(title.getText()));
         wish.setTarget(Double.parseDouble(String.valueOf(target.getText())));
-        wish.setImage(R.drawable.ic_airline_seat_flat_angled_black_24dp);
+        wish.setImage(R.drawable.ic_laptop_mac);
         wish.setCurrent(0.0);
         storage.save(wish);
 
