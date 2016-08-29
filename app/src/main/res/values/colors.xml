@@ -11,8 +11,8 @@
     <color name="teal">#22D2BB</color>
     <color name="purple">#C874F4</color>
     <color name="grey">#C4BCB5</color>
-    <color name="depositGreen">#24CB64</color>
-
+    <color name="saveGreen">#24CB64</color>
+    <color name="dialogHeaderGreen">#9ED166</color>
 
     <integer-array name="colors">
         <item>@color/blue</item>
@@ -20,7 +20,7 @@
         <item>@color/teal</item>
         <item>@color/purple</item>
         <item>@color/grey</item>
-        <item>@color/depositGreen</item>
+        <item>@color/saveGreen</item>
     </integer-array>
 
 </resources>
