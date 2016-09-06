@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ public class AddGoalDialog extends DialogFragment {
     public static final String EXTRA_IMAGE_ID = "com.mitchelldevries.image";
 
     @BindView(R.id.add_title)
-    EditText title;
+    TextInputEditText title;
     @BindView(R.id.add_target)
     EditText target;
     @BindView(R.id.add_image_button)

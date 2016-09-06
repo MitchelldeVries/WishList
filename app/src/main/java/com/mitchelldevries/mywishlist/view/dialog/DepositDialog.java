@@ -40,7 +40,7 @@ public class DepositDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.deposit_dialog, null);
+        View view = inflater.inflate(R.layout.dialog_deposit, null);
         ButterKnife.bind(this, view);
         builder.setView(view);
         return builder.create();

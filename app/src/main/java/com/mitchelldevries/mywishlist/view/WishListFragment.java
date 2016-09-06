@@ -20,10 +20,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mitchelldevries.mywishlist.R;
-import com.mitchelldevries.mywishlist.dialog.AddGoalDialog;
-import com.mitchelldevries.mywishlist.dialog.DepositDialog;
-import com.mitchelldevries.mywishlist.dialog.ImagePickerDialog;
-import com.mitchelldevries.mywishlist.dialog.WithdrawDialog;
+import com.mitchelldevries.mywishlist.view.dialog.AddGoalDialog;
+import com.mitchelldevries.mywishlist.view.dialog.DepositDialog;
+import com.mitchelldevries.mywishlist.view.dialog.ImagePickerDialog;
+import com.mitchelldevries.mywishlist.view.dialog.WithdrawDialog;
 import com.mitchelldevries.mywishlist.domain.Goal;
 import com.mitchelldevries.mywishlist.domain.GoalStorage;
 

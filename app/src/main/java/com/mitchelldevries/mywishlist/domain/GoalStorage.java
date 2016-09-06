@@ -2,8 +2,6 @@ package com.mitchelldevries.mywishlist.domain;
 
 import android.content.Context;
 
-import com.mitchelldevries.mywishlist.Wish;
-
 import java.util.List;
 
 import io.realm.Realm;
@@ -26,41 +24,41 @@ public class GoalStorage {
         realm = Realm.getInstance(realmConfig);
     }
 
-    public List<Wish> findAll() {
-        return realm.where(Wish.class).findAll();
+    public List<Goal> findAll() {
+        return realm.where(Goal.class).findAll();
     }
 
-    public Wish findOne(int id) {
-        return realm.where(Wish.class).equalTo("id", id).findFirst();
+    public Goal findOne(int id) {
+        return realm.where(Goal.class).equalTo("id", id).findFirst();
     }
 
-    public void save(Wish wish) {
+    public void save(Goal goal) {
         realm.beginTransaction();
-        realm.insertOrUpdate(wish);
+        realm.insertOrUpdate(goal);
         realm.commitTransaction();
     }
 
-    public void deposit(Wish wish, Double current) {
+    public void deposit(Goal goal, Double current) {
         realm.beginTransaction();
-        double old = findOne(wish.getId()).getCurrent();
-        wish.setCurrent(old += current);
+        double old = findOne(goal.getId()).getCurrent();
+        goal.setCurrent(old += current);
         realm.commitTransaction();
     }
 
-    public void withdraw(Wish wish, Double current) {
+    public void withdraw(Goal goal, Double current) {
         realm.beginTransaction();
-        double old = findOne(wish.getId()).getCurrent();
-        wish.setCurrent(old -= current);
+        double old = findOne(goal.getId()).getCurrent();
+        goal.setCurrent(old -= current);
         realm.commitTransaction();
     }
 
-    public void delete(Wish wish) {
+    public void delete(Goal goal) {
         realm.beginTransaction();
-        wish.deleteFromRealm();
+        goal.deleteFromRealm();
         realm.commitTransaction();
     }
 
     public int incrementId() {
-        return realm.where(Wish.class).max("id") == null ? 0 : realm.where(Wish.class).max("id").intValue() + 1;
+        return realm.where(Goal.class).max("id") == null ? 0 : realm.where(Goal.class).max("id").intValue() + 1;
     }
 }
