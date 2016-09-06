@@ -1,4 +1,4 @@
-package com.mitchelldevries.mywishlist;
+package com.mitchelldevries.mywishlist.view;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -6,11 +6,11 @@ import android.support.v4.app.Fragment;
 /**
  * @author Mitchell de Vries.
  */
-public class AddWishActivity extends SingleFragmentActivity {
+public class WishListActivity extends SingleFragmentActivity {
 
     @NonNull
     @Override
     protected Fragment createFragment() {
-        return AddWishFragment.newInstance();
+        return WishListFragment.newInstance();
     }
 }

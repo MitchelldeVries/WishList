@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">My Wishes</string>
-    <string name="empty_list">No wishes found.\nAdd a new wish by clicking on the + icon</string>
+    <string name="empty_list">No wishes found.\nAdd a new goal by clicking on the + icon</string>
     <string name="wish_list_item_image">Wish_list_item_image</string>
     <string name="list_item_title_mock">Macbook Pro</string>
     <string name="list_item_wish_end_price_mock">€1.550,00</string>
@@ -11,4 +11,10 @@
     <string name="remove_current">remove_current</string>
     <string name="deposit">Deposit</string>
     <string name="dialog_header">dialog header</string>
+    <string name="_0_0">0.0</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="add_fragment_title">Add Saving Target</string>
+    <string name="choose_image">Choose Image</string>
+    <string name="title">Title</string>
+    <string name="add_wish">Add goal</string>
 </resources>

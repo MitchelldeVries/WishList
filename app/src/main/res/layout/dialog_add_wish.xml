@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <ImageButton
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:id="@+id/add_image_button"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        android:padding="@dimen/m_padding"
+        android:textAllCaps="true"
+        android:textColor="@color/greyText"
+        android:textSize="28sp"
+        android:src="@drawable/icon_placeholder"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/add_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:paddingBottom="@dimen/m_padding"
+        android:paddingEnd="24dp"
+        android:paddingRight="24dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_euro"/>
+
+        <EditText
+            android:id="@+id/add_target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/_0_0"
+            android:inputType="numberDecimal"
+            android:maxLength="8"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/greyText"
+            android:textColorHint="@color/greyText"
+            android:textSize="29sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/cancel_action"
+            style="@style/Base.Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/icon_cancel"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/s_padding"
+            android:layout_marginTop="@dimen/s_padding"
+            android:background="@color/greyText"/>
+
+        <ImageButton
+            android:id="@+id/add_button"
+            style="@style/Base.Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_done"/>
+
+    </LinearLayout>
+
+</LinearLayout>

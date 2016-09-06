@@ -1,4 +1,4 @@
-package com.mitchelldevries.mywishlist;
+package com.mitchelldevries.mywishlist.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+
+import com.mitchelldevries.mywishlist.R;
 
 /**
  * @author Mitchell de Vries.

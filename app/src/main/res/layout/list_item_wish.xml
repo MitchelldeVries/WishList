@@ -22,14 +22,14 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:contentDescription="@string/add_current"
-                android:src="@drawable/ic_add" />
+                android:src="@drawable/icon_add" />
 
             <ImageView
                 android:id="@+id/list_item_withdraw"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/remove_current"
-                android:src="@drawable/ic_remove" />
+                android:src="@drawable/icon_remove" />
         </RelativeLayout>
 
         <LinearLayout
@@ -51,15 +51,14 @@
                     android:layout_marginEnd="@dimen/m_padding"
                     android:layout_marginRight="@dimen/m_padding"
                     android:contentDescription="@string/wish_list_item_image"
-                    android:src="@drawable/ic_laptop_mac" />
+                    android:src="@drawable/ic_img_laptop_mac" />
 
                 <TextView
                     android:id="@+id/list_item_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/list_item_title_mock"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textSize="21sp"/>
             </LinearLayout>
 
             <LinearLayout

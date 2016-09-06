@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3A5474</color>
-    <color name="colorPrimaryDark">#3A5474</color>
-    <color name="colorAccent">#3A5474</color>
     <color name="background">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -11,8 +9,10 @@
     <color name="teal">#22D2BB</color>
     <color name="purple">#C874F4</color>
     <color name="grey">#C4BCB5</color>
-    <color name="saveGreen">#24CB64</color>
-    <color name="dialogHeaderGreen">#9ED166</color>
+    <color name="green">#39C082</color>
+    <color name="red">#DE5555</color>
+    <color name="greyText">#999999</color>
+    <color name="orange">#FF8E6E</color>
 
     <integer-array name="colors">
         <item>@color/blue</item>
@@ -20,7 +20,8 @@
         <item>@color/teal</item>
         <item>@color/purple</item>
         <item>@color/grey</item>
-        <item>@color/saveGreen</item>
+        <item>@color/green</item>
+        <item>@color/orange</item>
     </integer-array>
 
 </resources>

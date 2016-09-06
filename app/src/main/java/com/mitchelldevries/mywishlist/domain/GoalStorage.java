@@ -1,6 +1,8 @@
-package com.mitchelldevries.mywishlist;
+package com.mitchelldevries.mywishlist.domain;
 
 import android.content.Context;
+
+import com.mitchelldevries.mywishlist.Wish;
 
 import java.util.List;
 
@@ -10,16 +12,16 @@ import io.realm.RealmConfiguration;
 /**
  * @author Mitchell de Vries.
  */
-public class WishStorage {
+public class GoalStorage {
 
     private Realm realm;
     private RealmConfiguration realmConfig;
 
-    public static WishStorage getInstance(Context context) {
-        return new WishStorage(context);
+    public static GoalStorage getInstance(Context context) {
+        return new GoalStorage(context);
     }
 
-    public WishStorage(Context context) {
+    public GoalStorage(Context context) {
         realmConfig = new RealmConfiguration.Builder(context).deleteRealmIfMigrationNeeded().build();
         realm = Realm.getInstance(realmConfig);
     }

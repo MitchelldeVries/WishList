@@ -1,8 +1,7 @@
-package com.mitchelldevries.mywishlist;
+package com.mitchelldevries.mywishlist.view.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -10,7 +9,11 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
+
+import com.mitchelldevries.mywishlist.R;
+import com.mitchelldevries.mywishlist.view.WishListFragment;
+import com.mitchelldevries.mywishlist.domain.Goal;
+import com.mitchelldevries.mywishlist.domain.GoalStorage;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,10 +26,6 @@ public class WithdrawDialog extends DialogFragment {
 
     @BindView(R.id.dialog_edit_text)
     EditText editText;
-    @BindView(R.id.save_action)
-    ImageButton saveButton;
-    @BindView(R.id.cancel_action)
-    ImageButton cancelButton;
 
     public static WithdrawDialog newInstance(int id) {
         Bundle args = new Bundle();
@@ -41,7 +40,7 @@ public class WithdrawDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog, null);
+        View view = inflater.inflate(R.layout.withdraw_dialog, null);
         ButterKnife.bind(this, view);
         builder.setView(view);
         return builder.create();
@@ -49,14 +48,24 @@ public class WithdrawDialog extends DialogFragment {
 
     @OnClick(R.id.save_action)
     void onPositiveClick() {
-        WishStorage storage = WishStorage.getInstance(getActivity());
-        Wish wish = storage.findOne(getArguments().getInt("id", 0));
-        storage.withdraw(wish, Double.parseDouble(String.valueOf(editText.getText())));
+        GoalStorage storage = GoalStorage.getInstance(getActivity());
+        Goal goal = storage.findOne(getArguments().getInt("id", 0));
+
+        storage.withdraw(goal, convertToDouble(editText.getText().toString()));
         getTargetFragment().onActivityResult(WishListFragment.REQUEST_WISH, Activity.RESULT_OK, null);
+        WithdrawDialog.this.getDialog().dismiss();
     }
 
-    @OnClick(R.id.save_action)
+    @OnClick(R.id.cancel_action)
     void onCancelClick() {
         WithdrawDialog.this.getDialog().cancel();
+    }
+
+    private double convertToDouble(String amount) {
+        if (amount.isEmpty()) {
+            return 0.0;
+        } else {
+            return Double.parseDouble(amount);
+        }
     }
 }

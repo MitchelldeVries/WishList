@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/red"
+        android:contentDescription="@string/dialog_header"
+        android:padding="16dp"
+        android:scaleX="-1"
+        android:scaleY="-1"
+        android:src="@drawable/icon_deposit"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/m_padding"
+        android:text="@string/withdraw"
+        android:textAllCaps="true"
+        android:textColor="@color/greyText"
+        android:textSize="28sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:paddingBottom="@dimen/m_padding"
+        android:paddingEnd="24dp"
+        android:paddingRight="24dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_euro"/>
+
+        <EditText
+            android:id="@+id/dialog_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/_0_0"
+            android:inputType="numberDecimal"
+            android:maxLength="8"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/greyText"
+            android:textColorHint="@color/greyText"
+            android:textSize="29sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/cancel_action"
+            style="@style/Base.Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/icon_cancel"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/s_padding"
+            android:layout_marginTop="@dimen/s_padding"
+            android:background="@color/greyText"/>
+
+        <ImageButton
+            android:id="@+id/save_action"
+            style="@style/Base.Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_done"/>
+
+    </LinearLayout>
+
+</LinearLayout>

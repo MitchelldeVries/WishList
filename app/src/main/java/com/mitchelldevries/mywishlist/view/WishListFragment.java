@@ -1,4 +1,4 @@
-package com.mitchelldevries.mywishlist;
+package com.mitchelldevries.mywishlist.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +19,14 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mitchelldevries.mywishlist.R;
+import com.mitchelldevries.mywishlist.dialog.AddGoalDialog;
+import com.mitchelldevries.mywishlist.dialog.DepositDialog;
+import com.mitchelldevries.mywishlist.dialog.ImagePickerDialog;
+import com.mitchelldevries.mywishlist.dialog.WithdrawDialog;
+import com.mitchelldevries.mywishlist.domain.Goal;
+import com.mitchelldevries.mywishlist.domain.GoalStorage;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,8 +44,8 @@ public class WishListFragment extends Fragment {
     RecyclerView recyclerView;
 
     private WishAdapter adapter;
-    private WishStorage storage;
-    private List<Wish> wishes;
+    private GoalStorage storage;
+    private List<Goal> mGoals;
 
     public static WishListFragment newInstance() {
         return new WishListFragment();
@@ -61,8 +69,8 @@ public class WishListFragment extends Fragment {
     }
 
     private void updateUI() {
-        storage = WishStorage.getInstance(getActivity());
-        wishes = storage.findAll();
+        storage = GoalStorage.getInstance(getActivity());
+        mGoals = storage.findAll();
         adapter = new WishAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -76,7 +84,8 @@ public class WishListFragment extends Fragment {
 
     @OnClick(R.id.fab)
     public void addNewWish() {
-        startActivity(new Intent(getActivity(), AddWishActivity.class));
+        DialogFragment newFragment = AddGoalDialog.newInstance(getBackgroundColor(mGoals.size()));
+        newFragment.show(getActivity().getSupportFragmentManager(), "imageGrid");
     }
 
     @Override
@@ -84,7 +93,7 @@ public class WishListFragment extends Fragment {
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
-        Log.i("TAG", "onActivityResult: " + getActivity().toString());
+
         if (requestCode == REQUEST_WISH) {
             updateUI();
         }
@@ -100,15 +109,15 @@ public class WishListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(WishViewHolder holder, int position) {
-            holder.bindWish(wishes.get(position), position);
+            holder.bindWish(mGoals.get(position), position);
         }
 
         @Override
         public int getItemCount() {
-            return wishes.size();
+            return mGoals.size();
         }
 
-        public class WishViewHolder extends RecyclerView.ViewHolder {
+        public class WishViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
             @BindView(R.id.relative_layout_list_item)
             RelativeLayout layout;
@@ -123,42 +132,53 @@ public class WishListFragment extends Fragment {
             @BindView(R.id.progress)
             ProgressBar progressBar;
 
-            private Wish wish;
+            private Goal mGoal;
 
             public WishViewHolder(View itemView) {
                 super(itemView);
                 ButterKnife.bind(this, itemView);
             }
 
-            public void bindWish(Wish wish, int position) {
-                this.wish = wish;
+            public void bindWish(Goal goal, int position) {
+                this.mGoal = goal;
 
-                int[] colors = getActivity().getResources().getIntArray(R.array.colors);
-                int color = position % colors.length;
-                int backgroundColor = colors[color];
+                int backgroundColor = getBackgroundColor(position);
                 layout.setBackgroundColor(backgroundColor);
 
-                wishTitle.setText(wish.getTitle());
-                wishImage.setImageResource(wish.getImage());
-                wishTarget.setText(String.format("€%s", String.valueOf(wish.getTarget())));
-                wishCurrent.setText(String.format("€%s", String.valueOf(wish.getCurrent())));
-                double progress = (wish.getCurrent() / wish.getTarget()) * 100;
+                wishTitle.setText(goal.getTitle());
+                wishImage.setImageResource(goal.getImage());
+                wishTarget.setText(String.format("€%s", String.valueOf(goal.getTarget())));
+                wishCurrent.setText(String.format("€%s", String.valueOf(goal.getCurrent())));
+                double progress = (goal.getCurrent() / goal.getTarget()) * 100;
                 Log.i("TAG", "bindWish: " + progress);
                 progressBar.setProgress((int) progress);
             }
 
             @OnClick(R.id.list_item_deposit)
             void deposit() {
-                DialogFragment newFragment = DepositDialog.newInstance(wish.getId());
+                DialogFragment newFragment = DepositDialog.newInstance(mGoal.getId());
+                newFragment.setTargetFragment(WishListFragment.this, REQUEST_WISH);
                 newFragment.show(getActivity().getSupportFragmentManager(), "deposit");
             }
 
             @OnClick(R.id.list_item_withdraw)
             void withdraw() {
-                DialogFragment newFragment = WithdrawDialog.newInstance(wish.getId());
+                DialogFragment newFragment = WithdrawDialog.newInstance(mGoal.getId());
                 newFragment.setTargetFragment(WishListFragment.this, REQUEST_WISH);
                 newFragment.show(getActivity().getSupportFragmentManager(), "withdraw");
             }
+
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new ImagePickerDialog();
+                newFragment.show(getActivity().getSupportFragmentManager(), "imageGrid");
+            }
         }
+    }
+
+    private int getBackgroundColor(int position) {
+        int[] colors = getActivity().getResources().getIntArray(R.array.colors);
+        int color = position % colors.length;
+        return colors[color];
     }
 }

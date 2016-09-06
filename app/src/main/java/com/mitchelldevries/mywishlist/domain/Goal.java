@@ -1,8 +1,6 @@
-package com.mitchelldevries.mywishlist;
+package com.mitchelldevries.mywishlist.domain;
 
-import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
-import android.text.Editable;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -10,7 +8,7 @@ import io.realm.annotations.PrimaryKey;
 /**
  * @author Mitchell de Vries.
  */
-public class Wish extends RealmObject {
+public class Goal extends RealmObject {
 
     @PrimaryKey
     private int id;
